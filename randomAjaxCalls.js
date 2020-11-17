@@ -1,6 +1,9 @@
 const apiKey = "66fa386b-c33c-4825-8091-57c9a02e9aa8";
 
 let $gallery = $('#gallery');
+let $progress = $('#progress');
+let $progressContainer = $('.progress');
+$progressContainer.hide();
 
 /*
     Template for each card:
@@ -36,16 +39,32 @@ function requestRandomDogBreeds(pictureSize = "small", limit = 20) {
         //empty gallery
         $gallery.empty();
 
+        $gallery.hide();
+        $progressContainer.show();
+
+        let totalPicCount = 0.0;
+        let loadedPicCount = 0.0;
+
         for(let data of response) {
             let url = data.url;
-
             // noinspection JSUnresolvedVariable
             if(data.breeds.length) {
-                $gallery.append(createDogCard(url, data.breeds[0]));
+                let $card = createDogCard(url, data.breeds[0]);
+                $gallery.append($card);
+                totalPicCount++;
+                $('img', $card).on('load', function () {
+                    loadedPicCount++;
+                    console.log(loadedPicCount/totalPicCount);
+                    $progress.css('width', loadedPicCount/totalPicCount*100 + '%');
+
+                    if(loadedPicCount >= totalPicCount) {
+                        $gallery.show();
+                        $progressContainer.hide();
+                    }
+                })
             }
-
-
         }
+
     });
 }
 
