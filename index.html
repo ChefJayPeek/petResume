@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href = "style.css"/>
+    <link rel="stylesheet" href = "helper.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
 <body>
     <nav>
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo left">Pet Resume</a>
+          <a href="#!" class="brand-logo left ml-2">Pet Resume</a>
           <ul class="right hide-on-med-and-down">
             <li class="active"><a href="search.html">Search</a></li>
             <li><a href="random.html">Random</a></li>
@@ -27,7 +28,8 @@
           <div class = "row">
             <div class = "col s12 m4 l3 align-left">
               <form class="breedSearch" style="margin:auto;max-width:300px">
-                <input type="text" placeholder="Search.." id="search-breed">
+                <input type="text" placeholder="Search.." id="autocomplete-input" class = "autocomplete">
+                <label for = "autocomplete-input">Autocomplete</label>
                 <button type="submit"><i class="fa fa-search"></i></button>
                 <p class = "autocomplete1">autocomplete placeholder1</p>
                 <p class = "autocomplete2">autocomplete placeholder2</p>
@@ -74,7 +76,10 @@
       </footer>
           
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>   
-    <script src = "autoComplete.js"></script>
+      <!--Compiled and minifed jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <script src = "autoComplete.js"></script>
 </body>
 </html>
