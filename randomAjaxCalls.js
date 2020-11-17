@@ -54,7 +54,6 @@ function requestRandomDogBreeds(pictureSize = "small", limit = 20) {
                 totalPicCount++;
                 $('img', $card).on('load', function () {
                     loadedPicCount++;
-                    console.log(loadedPicCount/totalPicCount);
                     $progress.css('width', loadedPicCount/totalPicCount*100 + '%');
 
                     if(loadedPicCount >= totalPicCount) {
