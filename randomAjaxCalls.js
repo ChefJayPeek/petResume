@@ -70,4 +70,8 @@ function createDogCard(url, breedData) {
     `);
 }
 
+$('#randomBtn').click(() => {
+    requestRandomDogBreeds();
+});
+
 requestRandomDogBreeds();
