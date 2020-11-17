@@ -20,33 +20,81 @@ $.ajax({
             var breedGroup = response[i].breed_group
             var height = response[i].height.imperial
             var lifeSpan = response[i].life_span
-            var name = response[i].name.toLowerCase()
+            var name = response[i].name
             var origin = response[i].origin
             var temperament = response[i].temperament
             var weight = response[i].weight.imperial
 
-            console.log(bredFor)
-            console.log(breedGroup)
-            console.log(height)
-            console.log(lifeSpan)
-            console.log(name)
-            console.log(origin)
-            console.log(temperament)
-            console.log(weight)
 
+            //creating a function that I can call at any time to render html on the search page
+            function renderHtml(arg1,arg2,arg3,arg4){
+
+                    //adding dynamic html that holds the pet info data from our query
+                    var searchPageHtml = `
+                    
+                    
+                        <!--what line 40 was before ->  <h4 class = "breedName">Breed Name</h2> -->
+                        <h2 class = "breedName">${name.toUpperCase()}</h2>
+
+                            <div class="carousel carousel-slider">
+
+                                <a class="carousel-item" href="#one!"><img src=${arg1}></a>
+                                <a class="carousel-item" href="#two!"><img src=${arg2}></a>
+                                <a class="carousel-item" href="#three!"><img src=${arg3}></a>
+                                <a class="carousel-item" href="#four!"><img src=${arg4}></a>
+
+                            </div>
+
+                        <p class = "weight left-align">Weight: ${weight}</p>
+                        <p class = "height left-align">Height: ${height}</p>
+                        <p class = "desc left-align">${name}'s are categorized as a ${breedGroup.toLowerCase()} breed. They originate from ${origin} and are primarily bred as dogs that are good for ${bredFor}. ${name}'s are a good match for those looking for dogs that are ${temperament}.</p>
+                    
+                        
+                    `
+
+                    //setting the description and data for the dog
+                    $("#petInfo").html(searchPageHtml)
+
+                    //Adding the javascript for the carousel slider
+                    $('.carousel.carousel-slider').carousel({
+                        fullWidth: true
+                    });
+                            
+
+                    //setting the dog name heading
+                    $(".breedName").text(name)
+
+            }
+
+
+            //this line marks the end of the function
 
             //Using a second api to look for images of the dog
             //query param names cant be capitalized -> Beagle should be beagle
-            var queryURL2 = `https://dog.ceo/api/breed/${name}/images/random`
+            var queryURL2 = `https://dog.ceo/api/breed/${name.toLowerCase()}/images`
 
             $.ajax({
                 url: queryURL2,
                 method: "GET"
             }).then(function(response2){
+
                 console.log(response2)
 
-                var image = response2.message
-                console.log(image)
+                var imageArray =[]
+
+                //looping through the response array to grab 5 images
+                for(let j=0;j<5;j++){
+
+                        imageArray.push(response2.message[j])
+                
+                        
+
+                }
+
+                renderHtml(imageArray[0],imageArray[1],imageArray[2],imageArray[3])
+                
+                
+                
             })
 
         }
@@ -56,5 +104,22 @@ $.ajax({
 
 
 
+
 })
+
+
+
+
+/*
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true
+});
+*/
+
+/*
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true
+  });
+      
+*/
 
