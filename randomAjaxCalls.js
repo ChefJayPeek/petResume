@@ -5,37 +5,69 @@ let $gallery = $('#gallery');
 /*
     Template for each card:
 
-    <div class="col s12 m6 xl4 p-3">
-            <div class="card">
-                <div class="card-image wave-effect waves-block wave-light">
-                    <img src="http://placehold.it/700x600" alt="placeholder" class="responsive-img activator">
-                    <span class="card-title">Title</span>
-                </div>
-                <div class="card-reveal white lighten-1">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id ipsam magni maiores non odio perspiciatis quaerat quia quo rerum ullam!
-                </div>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-image wave-effect waves-block wave-light">
+        <img src="https://cdn2.thedogapi.com/images/r1ifZl5E7_390x256.jpg" alt="placeholder" class="responsive-img activator">
+        <span class="card-title">American Bully</span>
+    </div>
+    <div class="card-reveal white lighten-1">
+        <span class="card-title grey-text text-darken-4">American Bully<i class="material-icons right">close</i></span>
+        <p>
+            <span class="grey-text">Farm dog, Cattle herding</span><br>
+            Height: 17 - 20 in <br>
+            Weight: 31 - 46 lbs <br>
+            Life span: 10 - 13 years <br>
+            Temperament: Friendly, Energetic, Alert, Loyal, Intelligent, Eager <br>
+        </p>
+    </div>
+</div>
+
  */
 
 
 /**
  * calls the dog API and requests a bunch of random breeds with pictures.
  */
-function requestRandomDogBreeds(pictureSize = "med", limit = 20) {
+function requestRandomDogBreeds(pictureSize = "small", limit = 20) {
     $.ajax({
         url: `https://api.thedogapi.com/v1/images/search? x-api-key=${apiKey}&size=${pictureSize}&order=random&limit=${limit}&format=json`,
         method: "GET"
     }).done((response) => {
-        console.log(response);
-        let imageUrl = response.url;
+        //empty gallery
+        $gallery.empty();
 
-        // noinspection JSUnresolvedVariable
-        if(response.breeds.length) {
+        for(let data of response) {
+            let url = data.url;
+
+            // noinspection JSUnresolvedVariable
+            if(data.breeds.length) {
+                $gallery.append(createDogCard(url, data.breeds[0]));
+            }
+
 
         }
     });
+}
+
+function createDogCard(url, breedData) {
+    return $(`
+    <div class="card">
+        <div class="card-image wave-effect waves-block wave-light">
+            <img src="${url}" alt="${breedData.name}" class="responsive-img activator">
+            <span class="card-title activator">${breedData.name}</span>
+        </div>
+        <div class="card-reveal white lighten-1">
+            <span class="card-title grey-text text-darken-4">${breedData.name}<i class="material-icons right">close</i></span>
+            <p>
+                <span class="grey-text">${breedData.bred_for}</span><br>
+                Height: ${breedData.height.imperial} in <br>
+                Weight: ${breedData.weight.imperial} lbs <br>
+                Life span: ${breedData.life_span} <br>
+                Temperament: ${breedData.temperament} <br>
+            </p>
+        </div>
+    </div>
+    `);
 }
 
 requestRandomDogBreeds();
