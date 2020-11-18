@@ -1,33 +1,38 @@
 //making the URL
 var queryURL = "https://api.thedogapi.com/v1/breeds?api_key=6eb49e4c-fb5a-4a63-84f3-04f3d2b8bf46"
 
+/**
+ * query the search term and display results onto the page
+ * @param searchTerm
+ */
+function handleSearch(searchTerm) {
+
+}
 
 //calling the first api that searches for breed info
 $.ajax({
     url: queryURL,
     method: "GET"
-}).then(function(response){
+}).then(function (response) {
 
     console.log(response)
     console.log(response[100].name)
     console.log(response.length)
 
-    for(let i=0;i<response.length;i++){
+    for (let i = 0; i < response.length; i++) {
 
 
         //replace Affenpinscher with a variable that contains the dog breed searched
-        if(response[i].name=="Greyhound"){
+        if (response[i].name == "Greyhound") {
 
             //collecting information related to the dog that was searched. We're using imperial units
             var bredFor = response[i].bred_for
 
             //handling an undefined bredFor variable
-            if(bredFor===undefined){
-                bredFor ="an unknown purpose"
+            if (bredFor === undefined) {
+                bredFor = "an unknown purpose"
             }
 
-
-            
 
             var breedGroup = response[i].breed_group
             var height = response[i].height.imperial
@@ -36,13 +41,13 @@ $.ajax({
             var origin = response[i].origin
             var originArray = []
             console.log(origin)
-            
+
 
             //handling an undefined origin
-            if(origin===undefined){
+            if (origin === undefined) {
                 originArray.push("unkown")
-                
-            }else{
+
+            } else {
 
                 originArray = origin.split(",")
 
@@ -53,10 +58,10 @@ $.ajax({
 
 
             //creating a function that I can call at any time to render html on the search page
-            function renderHtml(arg1,arg2,arg3,arg4){
+            function renderHtml(arg1, arg2, arg3, arg4) {
 
-                    //adding dynamic html that holds the pet info data from our query
-                    var searchPageHtml = `
+                //adding dynamic html that holds the pet info data from our query
+                var searchPageHtml = `
                     
                     
                         <!--what line 40 was before ->  <h4 class = "breedName">Breed Name</h2> -->
@@ -94,22 +99,21 @@ $.ajax({
                         
                     `
 
-                    //setting the description and data for the dog
-                    $("#petInfo").html(searchPageHtml)
+                //setting the description and data for the dog
+                $("#petInfo").html(searchPageHtml)
 
-                    //Adding the javascript for the carousel slider
-                    
-                    $('.carousel.carousel-slider').carousel({
-                        fullWidth: true,
-                        indicators: true,
-                        dist: 0,
-                        duration: 200
-                      });
-                            
-                         
+                //Adding the javascript for the carousel slider
 
-                    //setting the dog name heading
-                    $(".breedName").text(name)
+                $('.carousel.carousel-slider').carousel({
+                    fullWidth: true,
+                    indicators: true,
+                    dist: 0,
+                    duration: 200
+                });
+
+
+                //setting the dog name heading
+                $(".breedName").text(name)
 
             }
 
@@ -123,25 +127,23 @@ $.ajax({
             $.ajax({
                 url: queryURL2,
                 method: "GET"
-            }).then(function(response2){
+            }).then(function (response2) {
 
                 console.log(response2)
 
-                var imageArray =[]
+                var imageArray = []
 
                 //looping through the response array to grab 5 images
-                for(let j=0;j<5;j++){
+                for (let j = 0; j < 5; j++) {
 
-                        imageArray.push(response2.message[j])
-                
-                        
+                    imageArray.push(response2.message[j])
+
 
                 }
 
-                renderHtml(imageArray[0],imageArray[1],imageArray[2],imageArray[3])
-                
-                
-                
+                renderHtml(imageArray[0], imageArray[1], imageArray[2], imageArray[3])
+
+
             })
 
         }
@@ -150,10 +152,7 @@ $.ajax({
     }
 
 
-
-
 })
-
 
 
 //code to render the gallery on the homepage
@@ -165,14 +164,14 @@ var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
 $.ajax({
     url: queryURL3,
     method: "GET"
-}).then(function(response3){
+}).then(function (response3) {
 
 
-        console.log(response3.message[0])
+    console.log(response3.message[0])
 
-        //adding dynamic html that holds the pet info data from our query
-        //next step would be to fix image sizes so that they fit the container
-        var galleryHtml = `
+    //adding dynamic html that holds the pet info data from our query
+    //next step would be to fix image sizes so that they fit the container
+    var galleryHtml = `
         
         
             <div class="carousel carousel-slider center">
@@ -205,27 +204,22 @@ $.ajax({
 
              `
 
-            
-            $("#gallery").html(galleryHtml)
 
-            //I need to make seperate javascript files that run depending on which page we're on. 
-            //this code changes the carousel image every 2 seconds
-            
-            $('.carousel.carousel-slider#gallery').carousel({
-                fullWidth: true,
-                indicators: true,
-                dist: 0,
-                duration: 200
-              });
-              
-            setInterval(function() {
-                $('.carousel#gallery').carousel('next');
-              }, 2000); // every 2 seconds
-        
-          
-        
+    $("#gallery").html(galleryHtml)
 
-            
+    //I need to make seperate javascript files that run depending on which page we're on.
+    //this code changes the carousel image every 2 seconds
+
+    $('.carousel.carousel-slider#gallery').carousel({
+        fullWidth: true,
+        indicators: true,
+        dist: 0,
+        duration: 200
+    });
+
+    setInterval(function () {
+        $('.carousel#gallery').carousel('next');
+    }, 2000); // every 2 seconds
 
 
 })
