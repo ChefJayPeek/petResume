@@ -1,5 +1,6 @@
 //making the URL
 //var queryURL = `https://api.thedogapi.com/v1/breeds/search?api_key=6eb49e4c-fb5a-4a63-84f3-04f3d2b8bf46&q=${searchTerm}`
+const apiKey = "66fa386b-c33c-4825-8091-57c9a02e9aa8";
 
 /**
  * query the search term and display results onto the page
@@ -10,54 +11,54 @@ function handleSearch(searchTerm) {
     var queryURL = `https://api.thedogapi.com/v1/breeds/search?api_key=6eb49e4c-fb5a-4a63-84f3-04f3d2b8bf46&q=${searchTerm}`
 
 
-            //calling the first api that searches for breed info
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
+    //calling the first api that searches for breed info
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
 
-                console.log(response)
-                console.log(response[100].name)
-                console.log(response.length)
+        //console.log(response);
+        //console.log(response[].name);
+        //console.log(response.length);
 
-            
-                        //collecting information related to the dog that was searched. We're using imperial units
-                        var bredFor = response[i].bred_for
+        for (let petInfo of response) {
+            if (petInfo.name.toLowerCase() === searchTerm.toLowerCase()) {
+                //collecting information related to the dog that was searched. We're using imperial units
+                var bredFor = petInfo.bred_for;
 
-                        //handling an undefined bredFor variable
-                        if (bredFor === undefined) {
-                            bredFor = "an unknown purpose"
-                        }
+                //handling an undefined bredFor variable
+                if (bredFor === undefined) {
+                    bredFor = "an unknown purpose";
+                }
 
-
-                        var breedGroup = response[i].breed_group
-                        var height = response[i].height.imperial
-                        var lifeSpan = response[i].life_span
-                        var name = response[i].name
-                        var origin = response[i].origin
-                        var originArray = []
-                        console.log(origin)
-
-
-                        //handling an undefined origin
-                        if (origin === undefined) {
-                            originArray.push("unkown")
-
-                        } else {
-
-                            originArray = origin.split(",")
-
-                        }
-
-                        var temperament = response[i].temperament
-                        var weight = response[i].weight.imperial
+                var breedGroup = petInfo.breed_group;
+                var height = petInfo.height.imperial;
+                var lifeSpan = petInfo.life_span;
+                var name = petInfo.name;
+                var origin = petInfo.origin;
+                var originArray = [];
+                //console.log(origin);
 
 
-                        //creating a function that I can call at any time to render html on the search page
-                        function renderHtml(arg1, arg2, arg3, arg4) {
+                //handling an undefined origin
+                if (origin === undefined) {
+                    originArray.push("unkown")
 
-                            //adding dynamic html that holds the pet info data from our query
-                            var searchPageHtml = `
+                } else {
+
+                    originArray = origin.split(",")
+
+                }
+
+                var temperament = petInfo.temperament
+                var weight = petInfo.weight.imperial
+
+
+                //creating a function that I can call at any time to render html on the search page
+                function renderHtml(arg1, arg2, arg3, arg4) {
+
+                    //adding dynamic html that holds the pet info data from our query
+                    var searchPageHtml = `
                                 
                                 
                                     <!--what line 40 was before ->  <h4 class = "breedName">Breed Name</h2> -->
@@ -65,12 +66,12 @@ function handleSearch(searchTerm) {
 
 
 
-                                    <div class="carousel carousel-slider center">
+                                    <div id="carousel" class="carousel carousel-slider center">
 
                                         
 
                                             <div class="carousel-item  white-text" href="#one!">
-                                                <a ><img class="responsive-img" src=${arg1}></a>
+                                                <a><img class="responsive-img" src=${arg1}></a>
                                             </div>
 
                                             <div class="carousel-item  white-text" href="#two!">
@@ -95,98 +96,90 @@ function handleSearch(searchTerm) {
                                     
                                 `
 
-                            //setting the description and data for the dog
-                            $("#petInfo").html(searchPageHtml)
+                    //setting the description and data for the dog
+                    $("#petInfo").html(searchPageHtml)
 
-                            //Adding the javascript for the carousel slider
+                    //Adding the javascript for the carousel slider
 
-                            $('.carousel.carousel-slider').carousel({
-                                fullWidth: true,
-                                indicators: true,
-                                dist: 0,
-                                duration: 200
-                            });
-
-
-                            //setting the dog name heading
-                            $(".breedName").text(name)
-
-                        }
+                    $('.carousel.carousel-slider').carousel({
+                        fullWidth: true,
+                        indicators: true,
+                        dist: 0,
+                        duration: 200
+                    });
 
 
-                        //this line marks the end of the function
+                    //setting the dog name heading
+                    $(".breedName").text(name)
 
-                        //Using a second api to look for images of the dog
-                        //query param names cant be capitalized -> Beagle should be beagle
-                        var queryURL2 = `https://dog.ceo/api/breed/${name.toLowerCase()}/images`
+                }
 
+
+                //this line marks the end of the function
+
+                //Using a second api to look for images of the dog
+                //query param names cant be capitalized -> Beagle should be beagle
+                var queryURL2 = `https://dog.ceo/api/breed/${name.toLowerCase()}/images`
+
+                $.ajax({
+                    url: queryURL2,
+                    method: "GET"
+                }).then(function (response2) {
+
+                    //console.log(response2);
+                    var imageArray = [];
+
+                    //looping through the response array to grab 5 images
+                    for (let j = 0; j < 5; j++) {
+                        imageArray.push(response2.message[j])
+                    }
+                    renderHtml(imageArray[0], imageArray[1], imageArray[2], imageArray[3])
+                }).catch(function (error) {
+                    //fallback to theDogAPI
+                    if(error.status === 404) {
+                        let pictureSize = "small";
+                        let limit = 5;
                         $.ajax({
-                            url: queryURL2,
+                            url: `https://api.thedogapi.com/v1/images/search? x-api-key=${apiKey}&size=${pictureSize}&order=random&limit=${limit}&format=json`,
                             method: "GET"
-                        }).then(function (response2) {
-
-                            console.log(response2)
-
-                            var imageArray = []
-
-                            //looping through the response array to grab 5 images
-                            for (let j = 0; j < 5; j++) {
-
-                                imageArray.push(response2.message[j])
-
-
+                        }).done((response) => {
+                            let urls = [];
+                            for(let data of response) {
+                                let url = data.url;
+                                urls.push(url);
                             }
-
-                            renderHtml(imageArray[0], imageArray[1], imageArray[2], imageArray[3])
-
-
-                        })
-
-                    
-
-
-                
-
-
-            })
-
+                            renderHtml(urls[0], urls[1], urls[2], urls[3])
+                        });
+                    }
+                })
+                break;
+            }
+        }
+    })
 
 
 }
 
 
-/////
-/////
-/////
+function handleGallery() {
+
+    //code to render the gallery on the homepage
+
+    var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
 
 
-
-//////
-///////
-///////
-//////
-
-
-
-function handleGallery(){
-
-            //code to render the gallery on the homepage
-
-            var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
+    //querying random images from the dogceo api then rendering them on the browser
+    $.ajax({
+        url: queryURL3,
+        method: "GET"
+    }).then(function (response3) {
 
 
-            //querying random images from the dogceo api then rendering them on the browser
-            $.ajax({
-                url: queryURL3,
-                method: "GET"
-            }).then(function (response3) {
+        console.log(response3.message[0])
 
-
-                console.log(response3.message[0])
-
-                //adding dynamic html that holds the pet info data from our query
-                //next step would be to fix image sizes so that they fit the container
-                var galleryHtml = `
+        //adding dynamic html that holds the pet info data from our query
+        //next step would be to fix image sizes so that they fit the container
+        var galleryHtml = `
                     
                     
                         <div class="carousel carousel-slider center">
@@ -220,27 +213,27 @@ function handleGallery(){
                         `
 
 
-                $("#gallery").html(galleryHtml)
+        $("#gallery").html(galleryHtml)
 
-                //I need to make seperate javascript files that run depending on which page we're on.
-                //this code changes the carousel image every 2 seconds
+        //I need to make seperate javascript files that run depending on which page we're on.
+        //this code changes the carousel image every 2 seconds
 
-                $('.carousel.carousel-slider#gallery').carousel({
-                    fullWidth: true,
-                    indicators: true,
-                    dist: 0,
-                    duration: 200
-                });
+        $('.carousel.carousel-slider#gallery').carousel({
+            fullWidth: true,
+            indicators: true,
+            dist: 0,
+            duration: 200
+        });
 
-                setInterval(function () {
-                    $('.carousel#gallery').carousel('next');
-                }, 2000); // every 2 seconds
-
-
-            })
+        setInterval(function () {
+            $('.carousel#gallery').carousel('next');
+        }, 2000); // every 2 seconds
 
 
-        }
+    })
+
+
+}
 
 
 
