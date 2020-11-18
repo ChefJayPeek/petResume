@@ -58,7 +58,7 @@ function handleSearch(searchTerm) {
 
 
                 //creating a function that I can call at any time to render html on the search page
-                function renderHtml(arg1, arg2, arg3, arg4) {
+                function renderHtml(...args) {
 
                     //adding dynamic html that holds the pet info data from our query
                     var searchPageHtml = `
@@ -69,25 +69,18 @@ function handleSearch(searchTerm) {
 
 
 
-                                    <div id="carousel" class="carousel carousel-slider center">
+                                    <div id="carousel" class="carousel carousel-slider center">`;
 
-                                        
 
-                                            <div class="carousel-item  white-text" href="#one!">
-                                                <a><img class="responsive-img" src=${arg1}></a>
-                                            </div>
+                    for (let url of args) {
+                        searchPageHtml += `
+                                    <div class="carousel-item  white-text" href="#one!">
+                                        <a><img class="responsive-img" src=${url}></a>
+                                    </div>
+                                            `;
+                    }
 
-                                            <div class="carousel-item  white-text" href="#two!">
-                                                <a><img class="responsive-img" src=${arg2}></a>
-                                            </div>
-
-                                            <div class="carousel-item  white-text" href="#three!">
-                                                <a ><img class="responsive-img" src=${arg3}></a>
-                                            </div>
-
-                                            <div class="carousel-item  white-text" href="#four!">
-                                                <a ><img class="responsive-img" src=${arg4}></a>
-                                            </div>
+                    searchPageHtml += `
                                     </div>
 
                                     
@@ -96,7 +89,6 @@ function handleSearch(searchTerm) {
                                     <p class = "height left-align">Height: ${height} inches</p>
                                     <p class = "desc left-align">${name}'s are categorized as a ${breedGroup.toLowerCase()} breed. Their origins are ${originArray[0]} and they have been primarily bred as dogs that are good for ${bredFor}. ${name}'s are a good match for those looking for dogs that are ${temperament}.</p>
                                 
-                                    
                                 `
 
                     //setting the description and data for the dog
@@ -139,7 +131,7 @@ function handleSearch(searchTerm) {
                     renderHtml(imageArray[0], imageArray[1], imageArray[2], imageArray[3])
                 }).catch(function (error) {
                     //fallback to theDogAPI
-                    if(error.status === 404) {
+                    if (error.status === 404) {
                         let pictureSize = "small";
                         let limit = 5;
                         $.ajax({
@@ -147,11 +139,11 @@ function handleSearch(searchTerm) {
                             method: "GET"
                         }).done((response) => {
                             let urls = [];
-                            for(let data of response) {
+                            for (let data of response) {
                                 let url = data.url;
                                 urls.push(url);
                             }
-                            renderHtml(urls[0], urls[1], urls[2], urls[3])
+                            renderHtml(urls)
                         });
                     }
                 })
@@ -178,7 +170,7 @@ function handleGallery() {
     }).then(function (response3) {
 
 
-        console.log(response3.message[0])
+        console.log(response3.message[0]);
 
         //adding dynamic html that holds the pet info data from our query
         //next step would be to fix image sizes so that they fit the container
@@ -213,7 +205,7 @@ function handleGallery() {
                         </div>
 
 
-                        `
+                        `;
 
 
         $("#gallery").html(galleryHtml)
