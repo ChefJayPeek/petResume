@@ -15,4 +15,5 @@ $(document).ready(function(){
     });
 
     handleSearch("Pug");
+    handleGallery();
 });
