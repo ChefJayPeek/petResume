@@ -1,7 +1,6 @@
 //making the URL
 var queryURL = "https://api.thedogapi.com/v1/breeds?api_key=6eb49e4c-fb5a-4a63-84f3-04f3d2b8bf46"
 
-
 //calling the first api that searches for breed info
 $.ajax({
     url: queryURL,

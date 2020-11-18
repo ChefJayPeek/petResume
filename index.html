@@ -35,7 +35,9 @@
                 <i class="material-icons prefix">search</i>
                 <input type="text" id="autocomplete-input" class="autocomplete text-right">
                 <label for="autocomplete-input">Search </label>
-
+                <button id = "submit" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
               </div>
 
             </div>
@@ -86,5 +88,39 @@
 <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <script src = "autoComplete.js"></script>
+      <!-- <script src = "javascript.js"></script> -->
+
+
+      //sanity check
+        <script>
+        // Get the breed to search for from the html
+        $(document).ready(function(){
+          $('#submit').click(function(){
+            var searchBreed = $('.autocomplete').val();
+            //console.log(searchBreed);
+            $(".breedName").text(searchBreed);
+
+            //making the URL
+            var apiKey = "6eb49e4c-fb5a-4a63-84f3-04f3d2b8bf46";
+            var queryURL = "https://api.thedogapi.com/v1/breeds/search?q=" + searchBreed; //api_key=" + apiKey + "q" + searchBreed + "";
+            console.log(queryURL);
+            //calling the first api that searches for breed info
+            $.ajax({
+              url: queryURL,
+              method: "GET"
+            }).then(function(response){
+
+            console.log(response)
+            //console.log(response[100].name)
+            //console.log(response.length)
+            $(".weight").text("Weight: " + response[0].weight.imperial + " lbs.");
+            $(".height").text("Height: " + response[0].height.imperial + " inches");
+          
+          });
+          });
+        })
+
+
+      </script>
 </body>
 </html>
