@@ -20,6 +20,7 @@ function handleSearch(searchTerm) {
         //console.log(response);
         //console.log(response[].name);
         //console.log(response.length);
+        let breedId = 0;
 
         for (let petInfo of response) {
             if (petInfo.name.toLowerCase() === searchTerm.toLowerCase()) {
@@ -35,6 +36,8 @@ function handleSearch(searchTerm) {
                 var height = petInfo.height.imperial;
                 var lifeSpan = petInfo.life_span;
                 var name = petInfo.name;
+                breedId = petInfo.id;
+
                 var origin = petInfo.origin;
                 var originArray = [];
                 //console.log(origin);
@@ -140,7 +143,7 @@ function handleSearch(searchTerm) {
                         let pictureSize = "small";
                         let limit = 5;
                         $.ajax({
-                            url: `https://api.thedogapi.com/v1/images/search? x-api-key=${apiKey}&size=${pictureSize}&order=random&limit=${limit}&format=json`,
+                            url: `https://api.thedogapi.com/v1/images/search?x-api-key=${apiKey}&size=${pictureSize}&order=random&limit=${limit}&format=json&breed_id=${breedId}`,
                             method: "GET"
                         }).done((response) => {
                             let urls = [];
