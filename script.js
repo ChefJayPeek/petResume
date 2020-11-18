@@ -9,19 +9,45 @@ $.ajax({
 }).then(function(response){
 
     console.log(response)
+    console.log(response[100].name)
+    console.log(response.length)
 
     for(let i=0;i<response.length;i++){
 
+
         //replace Affenpinscher with a variable that contains the dog breed searched
-        if(response[i].name==`Affenpinscher`){
+        if(response[i].name=="Greyhound"){
 
             //collecting information related to the dog that was searched. We're using imperial units
             var bredFor = response[i].bred_for
+
+            //handling an undefined bredFor variable
+            if(bredFor===undefined){
+                bredFor ="an unknown purpose"
+            }
+
+
+            
+
             var breedGroup = response[i].breed_group
             var height = response[i].height.imperial
             var lifeSpan = response[i].life_span
             var name = response[i].name
             var origin = response[i].origin
+            var originArray = []
+            console.log(origin)
+            
+
+            //handling an undefined origin
+            if(origin===undefined){
+                originArray.push("unkown")
+                
+            }else{
+
+                originArray = origin.split(",")
+
+            }
+
             var temperament = response[i].temperament
             var weight = response[i].weight.imperial
 
@@ -36,18 +62,34 @@ $.ajax({
                         <!--what line 40 was before ->  <h4 class = "breedName">Breed Name</h2> -->
                         <h2 class = "breedName">${name.toUpperCase()}</h2>
 
-                            <div class="carousel carousel-slider">
 
-                                <a class="carousel-item" href="#one!"><img src=${arg1}></a>
-                                <a class="carousel-item" href="#two!"><img src=${arg2}></a>
-                                <a class="carousel-item" href="#three!"><img src=${arg3}></a>
-                                <a class="carousel-item" href="#four!"><img src=${arg4}></a>
 
-                            </div>
+                        <div class="carousel carousel-slider center">
 
-                        <p class = "weight left-align">Weight: ${weight}</p>
-                        <p class = "height left-align">Height: ${height}</p>
-                        <p class = "desc left-align">${name}'s are categorized as a ${breedGroup.toLowerCase()} breed. They originate from ${origin} and are primarily bred as dogs that are good for ${bredFor}. ${name}'s are a good match for those looking for dogs that are ${temperament}.</p>
+                               
+
+                                <div class="carousel-item  white-text" href="#one!">
+                                    <a ><img class="responsive-img" src=${arg1}></a>
+                                </div>
+
+                                <div class="carousel-item  white-text" href="#two!">
+                                    <a><img class="responsive-img" src=${arg2}></a>
+                                </div>
+
+                                <div class="carousel-item  white-text" href="#three!">
+                                    <a ><img class="responsive-img" src=${arg3}></a>
+                                </div>
+
+                                <div class="carousel-item  white-text" href="#four!">
+                                    <a ><img class="responsive-img" src=${arg4}></a>
+                                </div>
+                         </div>
+
+                           
+
+                        <p class = "weight left-align">Weight: ${weight} lbs</p>
+                        <p class = "height left-align">Height: ${height} inches</p>
+                        <p class = "desc left-align">${name}'s are categorized as a ${breedGroup.toLowerCase()} breed. Their origins are ${originArray[0]} and they have been primarily bred as dogs that are good for ${bredFor}. ${name}'s are a good match for those looking for dogs that are ${temperament}.</p>
                     
                         
                     `
@@ -57,8 +99,12 @@ $.ajax({
 
                     //Adding the javascript for the carousel slider
                     $('.carousel.carousel-slider').carousel({
-                        fullWidth: true
-                    });
+                        fullWidth: true,
+                        indicators: true,
+                        dist: 0,
+                        duration: 200
+                      });
+                            
                             
 
                     //setting the dog name heading
