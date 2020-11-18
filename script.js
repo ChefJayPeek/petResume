@@ -30,11 +30,11 @@ function handleSearch(searchTerm) {
                         }
 
 
-                        var breedGroup = response[i].breed_group
-                        var height = response[i].height.imperial
-                        var lifeSpan = response[i].life_span
-                        var name = response[i].name
-                        var origin = response[i].origin
+                        var breedGroup = response.breed_group
+                        var height = response.height.imperial
+                        var lifeSpan = response.life_span
+                        var name = response.name
+                        var origin = response.origin
                         var originArray = []
                         console.log(origin)
 
@@ -49,8 +49,8 @@ function handleSearch(searchTerm) {
 
                         }
 
-                        var temperament = response[i].temperament
-                        var weight = response[i].weight.imperial
+                        var temperament = response.temperament
+                        var weight = response.weight.imperial
 
 
                         //creating a function that I can call at any time to render html on the search page
