@@ -1,6 +1,6 @@
 // Get the breed to search for from the html
 $(document).ready(function(){
-    $('#submit').click(function(){
+    $('#autocomplete-input').change(function(){
         let searchBreed = $('.autocomplete').val();
         //console.log(searchBreed);
 
