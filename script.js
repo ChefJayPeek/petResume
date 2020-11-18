@@ -177,7 +177,7 @@ function handleGallery() {
         var galleryHtml = `
                     
                     
-                        <div class="carousel carousel-slider center">
+                        <div id="galleryC" class="carousel carousel-slider center">
 
                             
 
@@ -213,15 +213,14 @@ function handleGallery() {
         //I need to make seperate javascript files that run depending on which page we're on.
         //this code changes the carousel image every 2 seconds
 
-        $('.carousel.carousel-slider#gallery').carousel({
+        $('.carousel.carousel-slider#galleryC').carousel({
             fullWidth: true,
             indicators: true,
-            dist: 0,
-            duration: 200
+            
         });
 
         setInterval(function () {
-            $('.carousel#gallery').carousel('next');
+            $('.carousel#galleryC').carousel('next');
         }, 2000); // every 2 seconds
 
 
