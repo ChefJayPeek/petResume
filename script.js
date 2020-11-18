@@ -156,17 +156,56 @@ $.ajax({
 
 
 
+//code to render the gallery on the homepage
+var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
 
-/*
-$('.carousel.carousel-slider').carousel({
-    fullWidth: true
-});
-*/
 
-/*
-$('.carousel.carousel-slider').carousel({
-    fullWidth: true
-  });
-      
-*/
+//calling 
+$.ajax({
+    url: queryURL3,
+    method: "GET"
+}).then(function(response3){
 
+
+        //var index = Math.floor(Math.random()*172)
+
+        //adding dynamic html that holds the pet info data from our query
+        //next step would be to fix image sizes so that they fit the container
+        var galleryHtml = `
+        
+        
+            <div class="carousel carousel-slider center">
+
+                   
+
+                    <div class="carousel-item  white-text" href="#one!">
+                        <a ><img class="responsive-img" src=${response3.message[1]}></a>
+                    </div>
+
+                    <div class="carousel-item  white-text" href="#two!">
+                        <a><img class="responsive-img" src=${response3.message[2]}></a>
+                    </div>
+
+                    <div class="carousel-item  white-text" href="#three!">
+                        <a ><img class="responsive-img" src=${response3.message[3]}></a>
+                    </div>
+
+                    <div class="carousel-item  white-text" href="#four!">
+                        <a ><img class="responsive-img" src=${response3.message[4]}></a>
+                    </div>
+
+                    <div class="carousel-item  white-text" href="#four!">
+                        <a ><img class="responsive-img" src=${response3.message[0]}></a>
+                    </div>
+
+
+             </div>
+
+
+             `
+
+
+            $("#gallery").html(galleryHtml)
+
+
+})
