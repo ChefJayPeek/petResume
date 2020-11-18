@@ -99,6 +99,7 @@ $.ajax({
                     $("#petInfo").html(searchPageHtml)
 
                     //Adding the javascript for the carousel slider
+                    /*
                     $('.carousel.carousel-slider').carousel({
                         fullWidth: true,
                         indicators: true,
@@ -106,7 +107,7 @@ $.ajax({
                         duration: 200
                       });
                             
-                            
+                    */      
 
                     //setting the dog name heading
                     $(".breedName").text(name)
@@ -160,14 +161,14 @@ $.ajax({
 var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
 
 
-//calling 
+//querying random images from the dogceo api then rendering them on the browser
 $.ajax({
     url: queryURL3,
     method: "GET"
 }).then(function(response3){
 
 
-        //var index = Math.floor(Math.random()*172)
+        console.log(response3.message[0])
 
         //adding dynamic html that holds the pet info data from our query
         //next step would be to fix image sizes so that they fit the container
@@ -204,8 +205,34 @@ $.ajax({
 
              `
 
-
+            
             $("#gallery").html(galleryHtml)
+
+            //I need to make seperate javascript files that run depending on which page we're on. 
+            //this code changes the carousel image every 2 seconds
+            
+            $('.carousel.carousel-slider').carousel({
+                fullWidth: true,
+                indicators: true,
+                dist: 0,
+                duration: 200
+              });
+              
+            setInterval(function() {
+                $('.carousel').carousel('next');
+              }, 2000); // every 2 seconds
+        
+          
+        
+
+            
 
 
 })
+
+
+ 
+
+
+
+
