@@ -98,7 +98,7 @@ $.ajax({
                     $("#petInfo").html(searchPageHtml)
 
                     //Adding the javascript for the carousel slider
-                    /*
+                    
                     $('.carousel.carousel-slider').carousel({
                         fullWidth: true,
                         indicators: true,
@@ -106,7 +106,7 @@ $.ajax({
                         duration: 200
                       });
                             
-                    */      
+                         
 
                     //setting the dog name heading
                     $(".breedName").text(name)
@@ -157,6 +157,7 @@ $.ajax({
 
 
 //code to render the gallery on the homepage
+
 var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
 
 
@@ -210,7 +211,7 @@ $.ajax({
             //I need to make seperate javascript files that run depending on which page we're on. 
             //this code changes the carousel image every 2 seconds
             
-            $('.carousel.carousel-slider').carousel({
+            $('.carousel.carousel-slider#gallery').carousel({
                 fullWidth: true,
                 indicators: true,
                 dist: 0,
@@ -218,7 +219,7 @@ $.ajax({
               });
               
             setInterval(function() {
-                $('.carousel').carousel('next');
+                $('.carousel#gallery').carousel('next');
               }, 2000); // every 2 seconds
         
           
