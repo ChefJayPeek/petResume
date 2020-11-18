@@ -13,4 +13,6 @@ $(document).ready(function(){
         let searchBreed = $('.autocomplete').val();
         handleSearch(searchBreed);
     });
+
+    handleSearch("Pug");
 });
