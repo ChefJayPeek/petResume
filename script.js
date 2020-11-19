@@ -17,9 +17,6 @@ function handleSearch(searchTerm) {
         method: "GET"
     }).then(function (response) {
 
-        //console.log(response);
-        //console.log(response[].name);
-        //console.log(response.length);
         let breedId = 0;
 
         for (let petInfo of response) {
@@ -40,7 +37,6 @@ function handleSearch(searchTerm) {
 
                 var origin = petInfo.origin;
                 var originArray = [];
-                //console.log(origin);
 
 
                 //handling an undefined origin
@@ -168,9 +164,6 @@ function handleGallery() {
         url: queryURL3,
         method: "GET"
     }).then(function (response3) {
-
-
-        console.log(response3.message[0]);
 
         //adding dynamic html that holds the pet info data from our query
         //next step would be to fix image sizes so that they fit the container
