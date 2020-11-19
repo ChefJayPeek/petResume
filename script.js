@@ -17,9 +17,6 @@ function handleSearch(searchTerm) {
         method: "GET"
     }).then(function (response) {
 
-        //console.log(response);
-        //console.log(response[].name);
-        //console.log(response.length);
         let breedId = 0;
 
         for (let petInfo of response) {
@@ -40,7 +37,6 @@ function handleSearch(searchTerm) {
 
                 var origin = petInfo.origin;
                 var originArray = [];
-                //console.log(origin);
 
 
                 //handling an undefined origin
