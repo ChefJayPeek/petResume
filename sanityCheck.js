@@ -9,7 +9,7 @@ $(document).ready(function(){
         handleSearch(searchBreed);
     });
 
-    $searchForm.click('.autocomplete-content', function () {
+    $searchForm.on('click', '.autocomplete-content', function () {
         let searchBreed = $('.autocomplete').val();
         handleSearch(searchBreed);
     });
