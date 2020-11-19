@@ -36,10 +36,11 @@
     <h4 class="center">Learn about your future dog now:</h4>
     <!--              Search Box-->
     <div class="input-field center">
-        <i class="material-icons prefix">search</i>
-        <input type="text" id="autocomplete-input" class="autocomplete text-right">
-        <label for="autocomplete-input"> <a href = "search.html">Click to get started!</a></label>
-
+        <form id="searchForm" autocomplete="off">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="autocomplete-input" class="autocomplete text-right">
+            <label for="autocomplete-input">Search </label>
+        </form>
     </div>
 </div>
 
@@ -85,5 +86,6 @@
 <script src="script.js"></script>
 <!--<script src = "autoComplete.js"></script>-->
 <script src="sanityCheck.js"></script>
+<script src="searchNowFunction.js"></script>
 </body>
 </html>
