@@ -165,9 +165,6 @@ function handleGallery() {
         method: "GET"
     }).then(function (response3) {
 
-
-        console.log(response3.message[0]);
-
         //adding dynamic html that holds the pet info data from our query
         //next step would be to fix image sizes so that they fit the container
         var galleryHtml = `
