@@ -1,4 +1,3 @@
-// Get the breed to search for from the html
 $(document).ready(function(){
     let $searchForm = $('#searchForm');
 
@@ -6,14 +5,16 @@ $(document).ready(function(){
         event.preventDefault();
         let searchBreed = $('.autocomplete').val();
         //console.log(searchBreed);
-        handleSearch(searchBreed);
+        goToSearch(searchBreed);
     });
 
     $searchForm.on('click', '.autocomplete-content', function () {
         let searchBreed = $('.autocomplete').val();
-        handleSearch(searchBreed);
+        goToSearch(searchBreed);
     });
 
-    handleSearch("Pug");
-    handleGallery();
 });
+
+function goToSearch(searchTerm) {
+    window.location.href = './search.html?searchTerm=' + searchTerm;
+}
