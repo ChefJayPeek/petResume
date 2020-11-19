@@ -13,6 +13,8 @@ If the user is unsure about what breed to search for, the random page will displ
 Future development will include a function to query rescuegroups.org api to point the user to a rescue group that could have a possible match for their chosen pet.
 
 Deployed url:
-
+![url]https://chefjaypeek.github.io/petResume/index.html
 Code Repo:
-
+![url]https://github.com/ChefJayPeek/petResume
+Screenshot:
+![picture](Screenshot.png)
