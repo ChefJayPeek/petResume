@@ -12,16 +12,23 @@
     <title>Pet Resume</title>
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <a href="#!" class="brand-logo left ml-2">Pet Resume</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="search.html">Search</a></li>
-            <li><a href="random.html">Random</a></li>
-            <!-- <li class="active"><a href="collapsible.html">JavaScript</a></li> -->
-        </ul>
-    </div>
-</nav>
+
+  <!--
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo left ml-2">Pet Resume</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="search.html">Search</a></li>
+                <li><a href="random.html">Random</a></li>
+                 <li class="active"><a href="collapsible.html">JavaScript</a></li> 
+            </ul>
+        </div>
+    </nav>
+
+  -->
+  <div w3-include-html="navBar.html"></div>
+      
+
 
 <main>
 <div class="container">
@@ -37,42 +44,56 @@
     <h4 class="center">Learn about your future dog now:</h4>
     <!--              Search Box-->
     <div class="input-field center">
-        <i class="material-icons prefix">search</i>
-        <input type="text" id="autocomplete-input" class="autocomplete text-right">
-        <label for="autocomplete-input">Search the breed</label>
-
+        <form id="searchForm" autocomplete="off">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="autocomplete-input" class="autocomplete text-right">
+            <label for="autocomplete-input">Search </label>
+        </form>
     </div>
 </div>
 
+    
 
 </main>
 
+<div w3-include-html="footer.html"></div> 
+<!--
 <footer class="page-footer">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">More information?</h5>
-                <p class="grey-text text-lighten-4">placeholder rows and columns</p>
+                <p><a class="grey-text text-lighten-4" href = "https://www.thedogapi.com">The Dog Api</a></p>
+                <p><a class="grey-text text-lighten-4" href = "https://dog.ceo/dog-api">Dog CEO Api</a></p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
+
                     <li><a class="grey-text text-lighten-3" href="#!">placeholder link</a></li>
-                    <!-- future links go here-->
-                    <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+
+                    /*
+                     future links go here
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> 
+                    */
+
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
-        <div class="container">
-            © 2020 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Placeholder Links</a>
+        <div class="container center">
+             © 2020 Copyright
         </div>
     </div>
+    
+    
+
+    
 </footer>
+-->
 
 
 <!--Compiled and minifed jQuery -->
@@ -83,7 +104,10 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="script.js"></script>
+<script src="script2.js"></script>
 <!--<script src = "autoComplete.js"></script>-->
 <script src="sanityCheck.js"></script>
+<script src="autoComplete.js"></script>
+<script src="searchNowFunction.js"></script>
 </body>
 </html>

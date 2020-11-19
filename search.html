@@ -19,16 +19,21 @@
     <title>Search</title>
 </head>
 <body>
+    <div w3-include-html="navBar.html"></div>
+<!--
 <nav>
     <div class="nav-wrapper">
         <a href="index.html" class="brand-logo left ml-2">Pet Resume</a>
         <ul class="right hide-on-med-and-down">
             <li class="active"><a href="search.html">Search</a></li>
             <li><a href="random.html">Random</a></li>
-            <!-- <li class="active"><a href="collapsible.html">JavaScript</a></li> -->
+
+            // <li class="active"><a href="collapsible.html">JavaScript</a></li> 
+
         </ul>
     </div>
 </nav>
+-->
 
 <main>
     <h1 class="#search center-align">Search</h1>
@@ -67,31 +72,39 @@
     </div>
 </main>
 
+<div w3-include-html="footer.html"></div>
+<!--
 <footer class="page-footer">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">More information?</h5>
-                <p class="grey-text text-lighten-4">placeholder rows and columns</p>
+                <p><a class="grey-text text-lighten-4" href = "https://www.thedogapi.com">The Dog Api</a></p>
+                <p><a class="grey-text text-lighten-4" href = "https://dog.ceo/dog-api">Dog CEO Api</a></p>
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Credits:</h5>
+                <h5 class="white-text">Links</h5>
                 <ul>
+
                     <li><a class="grey-text text-lighten-3 underline" href="https://thedogapi.com/">The Dog API</a></li>
-                    <!-- future links go here-->
-                    <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    /*
+                     future links go here
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> 
+                    */
+
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container center">
-            © 2020 Copyright
+             © 2020 Copyright
         </div>
     </div>
 </footer>
+-->
 
 
 <!--Compiled and minifed jQuery -->
@@ -105,5 +118,6 @@
 <!-- <script src = "javascript.js"></script> -->
 <script src="script.js"></script>
 <script src="sanityCheck.js"></script>
+<script src="handleUrlParameters.js"></script>
 </body>
 </html>
