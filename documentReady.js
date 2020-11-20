@@ -10,12 +10,15 @@ $(document).ready(function(){
         handleSearch(searchBreed);
     });
 
-    //event listener that allows us to select a value to submit 
+    //event listener that allows us to select a value to submit by clicking it on the dropdown menu
     $searchForm.on('click', '.autocomplete-content', function () {
         let searchBreed = $('.autocomplete').val();
         handleSearch(searchBreed);
     });
 
+    //making the search.html page information default to info about pugs
     handleSearch("Pug");
+
+    //rendering gallery on the main page as soon as document is open
     handleGallery();
 });
