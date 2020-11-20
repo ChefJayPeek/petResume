@@ -19,21 +19,9 @@
     <title>Search</title>
 </head>
 <body>
+    
     <div w3-include-html="navBar.html"></div>
-<!--
-<nav>
-    <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo left ml-2">Pet Resume</a>
-        <ul class="right hide-on-med-and-down">
-            <li class="active"><a href="search.html">Search</a></li>
-            <li><a href="random.html">Random</a></li>
 
-            // <li class="active"><a href="collapsible.html">JavaScript</a></li> 
-
-        </ul>
-    </div>
-</nav>
--->
 
 <main>
     <h1 class="#search center-align">Search</h1>
@@ -73,38 +61,7 @@
 </main>
 
 <div w3-include-html="footer.html"></div>
-<!--
-<footer class="page-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">More information?</h5>
-                <p><a class="grey-text text-lighten-4" href = "https://www.thedogapi.com">The Dog Api</a></p>
-                <p><a class="grey-text text-lighten-4" href = "https://dog.ceo/dog-api">Dog CEO Api</a></p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
 
-                    <li><a class="grey-text text-lighten-3 underline" href="https://thedogapi.com/">The Dog API</a></li>
-                    /*
-                     future links go here
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> 
-                    */
-
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container center">
-             © 2020 Copyright
-        </div>
-    </div>
-</footer>
--->
 
 
 <!--Compiled and minifed jQuery -->
@@ -114,11 +71,13 @@
         crossorigin="anonymous"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<!--calling javascript files that render style and page content-->
 <script src="autoComplete.js"></script>
-<!-- <script src = "javascript.js"></script> -->
 <script src="script.js"></script>
 <script src="headerFooter.js"></script>
-<script src="sanityCheck.js"></script>
+<script src="documentReady.js"></script>
 <script src="handleUrlParameters.js"></script>
 </body>
 </html>
