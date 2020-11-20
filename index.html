@@ -12,29 +12,26 @@
     <title>Pet Resume</title>
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <a href="#!" class="brand-logo left ml-2">Pet Resume</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="search.html">Search</a></li>
-            <li><a href="random.html">Random</a></li>
-        </ul>
-    </div>
-</nav>
+
+  
+  <div w3-include-html="navBar.html"></div>
+      
+
 
 <main>
 <div class="container">
     <h2 class="center">Looking for a pet?</h2>
     <p class="flow-text">We are here to help!  On these pages, you can search for a specific breed and retrieve information about that breed.  This will help you choose your ideal pet!  Not sure about what breed you might be interested in?  We can help there too.  Simply go to the random page and you can browse random dog breeds to help you start the search for your perfect pet.</p>
     <div id="gallery" class="center">
-        <img src="https://placehold.it/700x400" alt="placeholder">
-        -->
+        
+        
 
     </div>
     <p class="flow-text">Ready to get started?  Select a breed and enter it below to view resumes from your future pet.  On the pet's resume page, vital information such as weight, height and temperment can be found.  This will enable you to choose the perfect dog to fit your lifestyle.</p>
 
     <h4 class="center">Learn about your future dog now:</h4>
-    <!--              Search Box-->
+
+    <!--Search Box-->
     <div class="input-field center">
         <form id="searchForm" autocomplete="off">
             <i class="material-icons prefix">search</i>
@@ -44,34 +41,11 @@
     </div>
 </div>
 
+    
 
 </main>
 
-<footer class="page-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">More information?</h5>
-                <p class="grey-text text-lighten-4">placeholder rows and columns</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="http://www.houstontx.gov/barc/">BARC - Animal Shelter</a></li>
-                    <li><a class="grey-text text-lighten-3" href="https://www.countypets.com">Harris County Pets</a></li>
-                    <li><a class="grey-text text-lighten-3" href="https://www.houstonpetsalive.org/resources/">Houston Pets Alive!</a></li>
-                    <!-- future links go here
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container center">
-             © 2020 Copyright
-        </div>
-    </div>
-</footer>
+<div w3-include-html="footer.html"></div> 
 
 
 <!--Compiled and minifed jQuery -->
@@ -81,9 +55,12 @@
         crossorigin="anonymous"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<!--calling javascript files that render style and page content-->
 <script src="script.js"></script>
-<!--<script src = "autoComplete.js"></script>-->
-<script src="sanityCheck.js"></script>
+<script src="headerFooter.js"></script>
+<script src="documentReady.js"></script>
 <script src="autoComplete.js"></script>
 <script src="searchNowFunction.js"></script>
 </body>

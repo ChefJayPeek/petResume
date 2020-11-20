@@ -87,11 +87,10 @@ function handleSearch(searchTerm) {
                                 
                                 `
 
-                    //setting the description and data for the dog
+                    //setting the description and data for the dog inside the div with id="petInfo"
                     $("#petInfo").html(searchPageHtml)
 
                     //Adding the javascript for the carousel slider
-
                     $('.carousel.carousel-slider').carousel({
                         fullWidth: true,
                         indicators: true,
@@ -103,10 +102,10 @@ function handleSearch(searchTerm) {
                     //setting the dog name heading
                     $(".breedName").text(name)
 
-                }
+                };//this line marks the end of the renderHTML function
 
 
-                //this line marks the end of the function
+
 
                 //Using a second api to look for images of the dog
                 //query param names cant be capitalized -> Beagle should be beagle
@@ -117,7 +116,7 @@ function handleSearch(searchTerm) {
                     method: "GET"
                 }).then(function (response2) {
 
-                    //console.log(response2);
+                    
                     var imageArray = [];
 
                     //looping through the response array to grab 5 images
@@ -155,7 +154,6 @@ function handleSearch(searchTerm) {
 function handleGallery() {
 
     //code to render the gallery on the homepage
-
     var queryURL3 = "https://dog.ceo/api/breeds/image/random/5"
 
 
@@ -165,11 +163,7 @@ function handleGallery() {
         method: "GET"
     }).then(function (response3) {
 
-
-        console.log(response3.message[0]);
-
         //adding dynamic html that holds the pet info data from our query
-        //next step would be to fix image sizes so that they fit the container
         var galleryHtml = `
                     
                     
@@ -206,9 +200,8 @@ function handleGallery() {
 
         $("#gallery").html(galleryHtml)
 
-        //I need to make seperate javascript files that run depending on which page we're on.
+        
         //this code changes the carousel image every 2 seconds
-
         $('.carousel.carousel-slider#galleryC').carousel({
             fullWidth: true,
             indicators: true,
@@ -224,6 +217,7 @@ function handleGallery() {
 
 
 }
+
 
 
 
