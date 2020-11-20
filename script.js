@@ -1,6 +1,6 @@
 //making the URL
 //var queryURL = `https://api.thedogapi.com/v1/breeds/search?api_key=6eb49e4c-fb5a-4a63-84f3-04f3d2b8bf46&q=${searchTerm}`
-const apiKey = "66fa386b-c33c-4825-8091-57c9a02e9aa8";
+const theApiKey = "66fa386b-c33c-4825-8091-57c9a02e9aa8";
 
 /**
  * query the search term and display results onto the page
@@ -131,7 +131,7 @@ function handleSearch(searchTerm) {
                         let pictureSize = "small";
                         let limit = 5;
                         $.ajax({
-                            url: `https://api.thedogapi.com/v1/images/search?x-api-key=${apiKey}&size=${pictureSize}&order=random&limit=${limit}&format=json&breed_id=${breedId}`,
+                            url: `https://api.thedogapi.com/v1/images/search?x-api-key=${theApiKey}&size=${pictureSize}&order=random&limit=${limit}&format=json&breed_id=${breedId}`,
                             method: "GET"
                         }).done((response) => {
                             let urls = [];
